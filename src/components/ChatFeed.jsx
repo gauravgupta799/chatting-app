@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/chatFeed.css";
 import MyMessage from './MyMessage';
 import TheirMessage from './TheirMessage';
 import MessageForm from './MessageForm';
@@ -18,16 +19,13 @@ function ChatFeed(props) {
             `url(${person.person.avatar})`
           }}
           >
-
           </div>
         )
       )
-
     }
 
     const renderMessages =()=>{
       const keys = Object.keys(messages);
-
       return keys.map((key, index)=>{
         const message = messages[key];
         const lastMessageKey = index !== 0 ? keys[index - 1] : null
@@ -55,14 +53,14 @@ function ChatFeed(props) {
 
   return (
     <div className='chat-feed'>
-      <div className="chat title-container">
+      <div className="chat-title-container">
         <div className="chat-title">{chat?.title}</div>
         <div className="chat-subtitle"></div>
-        {renderMessages()}
-        <div className="" style={{height:"100px"}}/>
-        <div className="message-form-container">
-          <MessageForm {...props} chatId ={activeChat}/>
-        </div>
+      </div>
+      {renderMessages()}
+      <div className="" style={{height:"50px"}}/>
+      <div className="message-form-container">
+        <MessageForm {...props} chatId ={activeChat}/>
       </div>
     </div>
   )

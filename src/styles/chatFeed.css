@@ -1,0 +1,17 @@
+.chat-feed{
+    /* border:2px solid #000; */
+    /* height: 100vh; */
+
+}
+.chat-title-container{
+
+}
+.message-form-container{
+    /* border:2px solid red; */
+    display: flex;
+    align-items:flex-end;
+    height: 100vh;
+    position: sticky;
+    bottom: 0;
+    padding: 0px 2em 1em;
+}

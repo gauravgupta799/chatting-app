@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import "../styles/messageForm.css";
 import {SendOutlined, PictureOutlined} from "@ant-design/icons";
 import {sendMessage, isTyping } from "react-chat-engine";
 
@@ -32,25 +33,23 @@ function MessageForm(props){
   }
   return (
     <form className="message-form" onSubmit={handleSubmit}>
-    <input type="text" 
-      className="message-input" 
-      placeholder='Send a message...' 
-      value={value}
-      onChange={handleChange}
-      onSubmit ={handleSubmit}
-    />
-
-    <label htmlFor="upload-button">
-      <span className="image-button">
-        <PictureOutlined className='picture-icon'/>
-      </span>
-    </label>
-
-    <input type="file" id="upload-button" 
-      multiple={false}
-      style={{display:"none"}}
-      onChange ={handleUpload.bind(this)}
-    />
+      <input type="text" 
+        className="message-input" 
+        placeholder='Send a message...' 
+        value={value}
+        onChange={handleChange}
+        onSubmit ={handleSubmit}
+      />
+      <label htmlFor="upload-button">
+        <span className="image-button">
+          <PictureOutlined className='picture-icon'/>
+        </span>
+      </label>
+      <input type="file" id="upload-button" 
+        multiple={false}
+        style={{display:"none"}}
+        onChange ={handleUpload.bind(this)}
+      />
       <button type="submit" className="send-button">
         <SendOutlined className="send-icon"/>
       </button>
