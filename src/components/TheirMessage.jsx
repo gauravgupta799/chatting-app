@@ -15,7 +15,7 @@ const TheirMessage = ({message, lastMessage}) => {
     )}
     {message.attachments && message.attachments.length > 0 ?
       (
-        <img src={message.attachment[0].file} 
+        <img src={message.attachments[0].file} 
           alt="message-attachement" 
           className='message-image'
           style={{

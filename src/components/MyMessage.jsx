@@ -3,7 +3,7 @@ import React from 'react'
 const MyMessage = ({message}) => {
   if(message.attachment && message.attachment.length > 0) {
     return (
-      <img src={message.attachment[0].file} 
+      <img src={message.attachments[0].file} 
         alt="message-attachement" 
         className='message-image'
         style={{float:'right'}}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import "../styles/loginForm.css";
 import axios from 'axios';
 
@@ -11,36 +11,41 @@ function LoginForm() {
     password:"",
   });
   const [error, setError] = useState("");
-  
   const {username , password} = user;
+  const inputRef1 = useRef();
+  const inputRef2 = useRef();
+
+  const handleFocus = (inputRef) =>{
+    inputRef.current.placeholder =""
+  }
+  const handleBlur = (inputRef, placeholderText) => {
+    inputRef.current.placeholder = placeholderText;
+  };
 
   // handleChange Function
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const {name , value} = e.target;
     setUser((prevValue)=>({
       ...prevValue,
       [name]:value
     }));
-
+  }
+  // handleSubmit Function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const authObject = {
       "Project-ID":projectID,
       "User-Name":username,
       "User-Secret":password
     }
     try {
-      await axios.get(url, {
-        headers:authObject
-      });
-      localStorage.setItem("username", user);
+      await axios.get(url, { headers:authObject });
+      localStorage.setItem("user", JSON.stringify(user));
       window.location.reload();
       setError("");
     }catch (error) {
       setError("Oops!, incorrect credentials")
     }
-  }
-  // handleSubmit Function
-  const handleSubmit =(e) => {
-    e.preventDefault();
   }
   return (
     <div className="loginForm-wrapper">
@@ -53,6 +58,9 @@ function LoginForm() {
                 placeholder='Username'
                 value={username}
                 onChange={handleChange}
+                ref={inputRef1}
+                onFocus={()=>handleFocus(inputRef1)}
+                onBlur={() => handleBlur(inputRef1, 'Username')}
                 required
             />
           </div>
@@ -62,12 +70,15 @@ function LoginForm() {
                 placeholder='Password'
                 value={password}
                 onChange={handleChange}
+                ref={inputRef2}
+                onFocus={()=>handleFocus(inputRef2)}
+                onBlur={() => handleBlur(inputRef2, 'Password')}
                 required
             />
           </div>
-          <div className="form-group center">
+          <div className="btn-wrapper center">
             <button className="button">
-              <span>StartCahtting</span>
+              <span>Start Chatting</span>
             </button>
           </div>
         </form>
